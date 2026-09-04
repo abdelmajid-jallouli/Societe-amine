@@ -15,6 +15,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Lowercase repository name
+        run: |
+          echo "REPO_NAME_LOWER=$(echo '${{ github.event.repository.name }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
@@ -35,14 +39,18 @@ jobs:
           file: Backend/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-backend:${{ github.sha }}
-            ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-backend:latest
+            ghcr.io/${{ github.repository_owner }}/${{ env.REPO_NAME_LOWER }}-backend:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/${{ env.REPO_NAME_LOWER }}-backend:latest
 
   frontend:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Lowercase repository name
+        run: |
+          echo "REPO_NAME_LOWER=$(echo '${{ github.event.repository.name }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -64,5 +72,5 @@ jobs:
           file: frontend/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-frontend:${{ github.sha }}
-            ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}-frontend:latest
+            ghcr.io/${{ github.repository_owner }}/${{ env.REPO_NAME_LOWER }}-frontend:${{ github.sha }}
+            ghcr.io/${{ github.repository_owner }}/${{ env.REPO_NAME_LOWER }}-frontend:latest
