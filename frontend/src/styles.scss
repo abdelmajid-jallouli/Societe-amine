@@ -1,0 +1,56 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$primary: mat.define-palette(mat.$blue-palette, 900, 700, 100);
+$accent: mat.define-palette(mat.$cyan-palette, 700, 500, 100);
+$warn: mat.define-palette(mat.$red-palette);
+$theme: mat.define-light-theme((
+  color: (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+@include mat.all-component-themes($theme);
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --app-primary: #0b1f3a;
+  --app-primary-dark: #08162a;
+  --app-primary-light: #1d4f91;
+  --admin-primary: #0b1f3a;
+  --admin-primary-light: #1f4478;
+  --admin-surface: #f5f8fc;
+  --admin-card: #ffffff;
+  --app-surface: #f5f8fc;
+  --app-border-radius: 8px;
+  --app-spacing: 16px;
+  --app-text: #10213a;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--app-surface);
+  color: var(--app-text);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+}

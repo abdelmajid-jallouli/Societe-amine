@@ -1,0 +1,26 @@
+node_modules/
+.angular/
+dist/
+build/
+target/
+*.rar
+*.zip
+Societe amine/
+.DS_Store
+Thumbs.db
+*.log
+.env
+*.class
+*.jar
+*.war
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+*.swp
+*.swo
+*~
+coverage/
+.nyc_output/
